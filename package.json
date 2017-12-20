@@ -1,0 +1,24 @@
+{
+  "name": "bubble",
+  "version": "0.1.0",
+  "description": "A Telegram Bot",
+  "main": "app.js",
+  "author": "Ayaka Neko",
+  "license": "MIT",
+  "dependencies": {
+    "log4js": "^2.4.1",
+    "node-fetch": "^1.7.3",
+    "telegraf": "^3.17.2"
+  },
+  "scripts": {
+    "build": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nekomeowww/Ningmeng.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nekomeowww/Ningmeng/issues"
+  },
+  "homepage": "https://github.com/nekomeowww/Ningmeng#readme" 
+}
