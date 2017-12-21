@@ -1,1 +1,9 @@
+config.js
+
 node_modules/
+
+.vscode/launch.json
+
+.vscode
+
+log/
