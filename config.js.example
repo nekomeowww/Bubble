@@ -1,0 +1,12 @@
+var config = {
+    token : "API Key",
+    nickname : "Nickname",
+    username : "Bot username",
+    webhook : {
+        url: "Webhook url",
+        path: "/",
+        port: 8500
+    }
+}
+
+module.exports = config;
