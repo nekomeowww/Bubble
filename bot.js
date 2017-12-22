@@ -1,7 +1,6 @@
 // Dependencies
 
 const Telegraf = require('telegraf');
-const Session = require('telegraf/session')
 const Telegram = require('telegraf/telegram');
 const log4js = require('log4js');
 
@@ -13,12 +12,12 @@ let packageInfo = require('./package.json');
 
 // Bot Username
 
-let botUsername = "@" + config.username;
+let botUsername = new String("@" + config.username);
 
 // Time
 
 let Time = new Date();
-let CurrentTime = Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2) + "-" + ("0" + Time.getDate()).slice(-2) + "-" + ("0" + Time.getHours()).slice(-2) + "-" + ("0" + Time.getMinutes()).slice(-2) + "-" + ("0" + Time.getSeconds()).slice(-2);
+let CurrentTime = new String(Time.getFullYear() + "-" + ("0"+(Time.getMonth()+1)).slice(-2) + "-" + ("0" + Time.getDate()).slice(-2) + "-" + ("0" + Time.getHours()).slice(-2) + "-" + ("0" + Time.getMinutes()).slice(-2) + "-" + ("0" + Time.getSeconds()).slice(-2));
 
 // Logger
 
@@ -74,7 +73,7 @@ let botctl = {
     start: () => {
         core.control();
         Bot.catch((err) => {
-            Log.fatal('Bad', err)
+            Log.fatal(err)
           });
     },
 
@@ -83,9 +82,8 @@ let botctl = {
     }
 }
 
-exports.Session = Session;
-exports.botUsername = botUsername;
 exports.Bot = Bot;
-exports.TelegramClient = TelegramClient;
 exports.Log = Log;
 exports.botctl = botctl;
+exports.botUsername = botUsername;
+exports.TelegramClient = TelegramClient;
