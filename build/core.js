@@ -1,6 +1,6 @@
 let bot = require('./bot');
 let config = require('./config');
-let packageInfo = require('./package.json');
+let packageInfo = require('../package.json');
 let subscribe = require('./User/subscribe');
 let core = {
     // Main control of all things that requires ctx

@@ -5,7 +5,7 @@ const log4js = require('log4js');
 // Local Files
 let config = require('./config');
 let core = require('./core').core;
-let packageInfo = require('./package.json');
+let packageInfo = require('../package.json');
 // Bot Username
 let botUsername = new String("@" + config.username);
 // Time
