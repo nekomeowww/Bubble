@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "locale": "zh-CN",
+        "outDir": "./build",
+        "allowJs": true,
+        "target": "ESNext"
+    },
+    "include": [
+        "./src/**/*",
+        "./config.js.example"
+    ]
+}
