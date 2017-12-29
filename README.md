@@ -1,4 +1,16 @@
-# Bubble Bot
+# Bubble Bot [ 0.1.1 ]
+
+__Currently migrating to TypeScript__
+
+## Usage
+
+```
+git clone https://github.com/nekomeowww/Bubble.git
+cd build
+node app.js
+```
+
+## Description
 
 This is a bot that you could use it as a account in Telegram.
 
