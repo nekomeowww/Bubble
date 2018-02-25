@@ -1,60 +1,135 @@
+// Local Files
+
 let bot = require('./bot');
 let config = require('./config');
-let packageInfo = require('../package.json');
+let cmdctl = require('./Bot/command');
+let packageInfo = require('./package.json');
 let subscribe = require('./User/subscribe');
+
+// Dependencies
+
+let fileSystem = require('fs');
+var jsonFile = require('jsonfile')
+
 let core = {
+    
     // Main control of all things that requires ctx
+    
     control: () => {
         let Bot = bot.Bot;
+        
         // Command
-        Bot.command(command.register('/start'), (ctx) => ctx.reply("其实咱不是 Bot 喔，因为 Neko 现在不在线，已经将消息转发到 Neko 那边去了呢w \n稍等一下下啦，说不定 Neko 等会儿就会回复了呢"));
-        Bot.command(command.register('/help'), (ctx) => ctx.reply("喵呜？想要找 Neko 嘛？试试看直接联系 @n3ko10 呢~"));
-        Bot.command(command.register('/subscribe'), (ctx) => subscribe.core.getInfo());
+
+        cmdctl.core();
+
         // Context Processing
+
         // Text Handling
-        let botlog = bot.Log;
+        
+        let output = "来自: "
         Bot.on('text', (ctx) => {
-            if (ctx.message.from.first_name && ctx.message.from.last_name) {
-                botlog.trace("来自: " + ctx.message.from.first_name + " " + ctx.message.from.last_name + " - " + ctx.message.text);
-            }
-            else if (ctx.message.from.username) {
-                botlog.trace("来自: " + ctx.message.from.username + " - " + ctx.message.text);
+            if(ctx.message.chat.type == "group" || ctx.message.chat.type == "supergroup") {
+                var userList = groupDisplay(ctx);
+                //exportsDb(ctx, userList);
             }
             else {
-                botlog.trace("来自: " + ctx.message.from.id + " - " + ctx.message.text);
+                var userList = privateDisplay(ctx);
+                //exportsDb(ctx, userList);
             }
-            return ctx.message.text;
         });
+        
         // Sticker Handling
+        
         Bot.on('sticker', (ctx) => {
         });
+        
         // Photo Handling
+        
         Bot.on('photo', (ctx) => {
             //bot.Log.debug(ctx.message);
         });
+
         // Other
+
+        let exportsDb = (ctx, list) => {
+            let file = "./group.json"
+            if(!fileSystem.existsSync(file)) {
+                fileSystem.openSync(file, "wx", (err, fd) => {
+                    bot.Log.fatal(err)
+                    fileSystem.closeSync(fd, (err) => {
+                        bot.Log.fatal(err);
+                    });
+                });
+            }
+            //bot.Log.debug("已更新群组列表...");
+        }
+
+        let groupDisplay = (ctx) => {
+            
+            let lastName = ctx.message.from.last_name;
+            let firstName = ctx.message.from.first_name;
+            let username = ctx.message.from.username;
+            let senderId = ctx.message.from.id;            
+
+            let chatType = ctx.message.chat.type;
+            let chatId = ctx.message.chat.id;
+            let chatName = ctx.message.chat.title;
+            let date = ctx.message.date;
+            let text = ctx.message.text;
+
+            if(firstName && lastName && (chatType == "group" || chatType == "supergroup")) {
+                bot.Log.trace(output + firstName + " " + lastName + " [ ID:" + senderId + " 来自群组: " + chatName + " [ "+ chatType +" ]" + ": " + chatId +" ]")
+                bot.Log.trace("消息: " + text);
+
+                return {chatName, chatId}
+            }
+            else if(username && (chatType == "group" || chatType == "supergroup")) {
+                bot.Log.trace(output + username + " [ ID:" + senderId + " 来自群组: " + chatName + " [ "+ chatType +" ]" + ": " + chatId +" ]")
+                bot.Log.trace("消息: " + text);
+                
+                return {chatName, chatId}
+            }
+            else if((chatType == "group" || chatType == "supergroup")){
+                bot.Log.trace(output + " [ ID:" + senderId + " 来自群组: " + chatName + " [ "+ chatType +" ]" + ": " + chatId +" ]")
+                bot.Log.trace("消息: " + text);
+
+                return {chatName, chatId}
+            }
+        }
+
+        let privateDisplay = (ctx) => {
+            
+            let lastName = ctx.message.from.last_name;
+            let firstName = ctx.message.from.first_name;
+            let username = ctx.message.from.username;
+            let senderId = ctx.message.from.id;            
+
+            let chatType = ctx.message.chat.type;
+            let chatId = ctx.message.chat.id;
+            let date = ctx.message.date;
+            let text = ctx.message.text;
+
+            if(firstName && lastName) {
+                bot.Log.trace(output + firstName + " " + lastName + " [ ID:" + senderId + " ]")
+                bot.Log.trace("消息: " + text);
+
+                let fullname = firstName + " " + lastName    
+                return {fullname, senderId}
+            }
+            else if(username) {
+                bot.Log.trace(output + username + " [ ID:" + senderId + " ]")
+                bot.Log.trace("消息: " + text);
+                
+                return {username, senderId}
+            }
+            else {
+                botlog.trace(output + " [ ID:" + senderId + " ]")
+                botlog.trace("消息: " + text);
+
+                return {senderId, senderId}
+            }
+        }
     }
 };
-let command = {
-    // Register the command and also checkin command with bot's ssername
-    register: (commandName) => {
-        commands = [commandName, commandName + bot.botUsername];
-        return commands;
-    },
-    // Return the pure data without the "/command" part of string
-    commandCheck: (ctx) => {
-        let result = new String("");
-        let text = new String(ctx.message.text);
-        let split = text.indexOf(' ');
-        if (/@NingmengBot/gi.test(text)) {
-            result = text.slice(split + 1);
-            return result;
-        }
-        else {
-            result = text.slice(split + 1);
-            return result;
-        }
-    }
-};
+
 exports.core = core;
-exports.command = command;
