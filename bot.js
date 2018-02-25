@@ -1,17 +1,26 @@
 // Dependencies
+
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
 const log4js = require('log4js');
+
 // Local Files
+
 let config = require('./config');
 let core = require('./core').core;
-let packageInfo = require('../package.json');
+let packageInfo = require('./package.json');
+
 // Bot Username
+
 let botUsername = new String("@" + config.username);
+
 // Time
+
 let Time = new Date();
 let CurrentTime = new String(Time.getFullYear() + "-" + ("0" + (Time.getMonth() + 1)).slice(-2) + "-" + ("0" + Time.getDate()).slice(-2) + "-" + ("0" + Time.getHours()).slice(-2) + "-" + ("0" + Time.getMinutes()).slice(-2) + "-" + ("0" + Time.getSeconds()).slice(-2));
+
 // Logger
+
 let fileName = "./log/" + config.username + "-" + CurrentTime + ".log";
 log4js.configure({
     appenders: {
@@ -25,7 +34,9 @@ log4js.configure({
 });
 const logger = log4js.getLogger('Bubble');
 logger.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
+
 //logger.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
+
 let Log = {
     info: (text) => {
         logger.info(text);
