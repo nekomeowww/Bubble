@@ -33,7 +33,7 @@ let command = {
         }
     },
     meow(ctx) {
-        if(ctx.message.chat.type == "group" || ctx.message.chat.type == "supergroup") {
+        if(ctx.message.from.id == config.ownerId && (ctx.message.chat.type == "group" || ctx.message.chat.type == "supergroup")) {
             let chatType = ctx.message.chat.type;
             let chatId = ctx.message.chat.id;
             let chatName = ctx.message.chat.title;
@@ -44,7 +44,7 @@ let command = {
             bot.TelegramClient.sendMessage(config.ownerId, info)
         }
         else {
-            ctx.reply("这个命令不可以在这里用了啦。")
+            ctx.reply("无权使用。")
         }
     }
 };
