@@ -9,12 +9,11 @@ let send = (ctx, text) => {
     let sendText ='';
     bot.Log.debug(array)
     for(let i of array) {
-        bot.Log.debug(i);
         sendText += i
     }
     bot.TelegramClient.sendMessage(sendId, sendText)
-    bot.Log.trace("消息已经发送出去了哦！")
     bot.Log.trace("消息内容：" + sendText);
+    bot.Log.trace("消息已经发送出去了哦！");
 }
 
 module.exports = send;
