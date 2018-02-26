@@ -7,7 +7,6 @@ let send = (ctx, text) => {
     let sendId = array[0];
     array.shift()
     let sendText ='';
-    bot.Log.debug(array)
     for(let i of array) {
         sendText += i
     }
