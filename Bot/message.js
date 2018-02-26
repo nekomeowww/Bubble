@@ -5,12 +5,12 @@ let send = (ctx, text) => {
     let data = cmd.command.commandCheck(ctx)
     let array = data.split(' ');
     let sendId = array[0];
-    let sendText;
-    for(var i = 1; i < array.length; i++) {
-        sendText = array[1];
-        bot.Log.debug(array[i])
+    array.shift()
+    let sendText ='';
+    bot.Log.debug(array)
+    for(let i of array) {
         bot.Log.debug(i);
-        sendText += array[i]
+        sendText += i
     }
     bot.TelegramClient.sendMessage(sendId, sendText)
     bot.Log.trace("消息已经发送出去了哦！")
