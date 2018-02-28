@@ -6,6 +6,9 @@
   "author": "Ayaka Neko",
   "license": "MIT",
   "dependencies": {
+    "const": "^1.0.0",
+    "http-proxy-agent": "^2.0.0",
+    "https-proxy-agent": "^2.1.1",
     "jsonfile": "^4.0.0",
     "log4js": "^2.4.1",
     "node-fetch": "^1.7.3",
