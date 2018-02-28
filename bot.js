@@ -3,6 +3,9 @@
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
 const log4js = require('log4js');
+const HttpsProxyAgent = require('https-proxy-agent')
+const HttpProxyAgent = require('http-proxy-agent')
+
 
 // Local Files
 
@@ -56,10 +59,35 @@ let Log = {
 };
 // Bot
 let token = config.token;
-let Bot = new Telegraf(token);
-let TelegramClient = new Telegram(token);
-// Bot Control
-let botctl = {
+let proxy = config.proxy.url;
+
+let Bot;
+let TelegramClient;
+
+if(config.proxy.enable) {
+    Log.debug("启用了代理，代理地址为: " + config.proxy.url)
+    
+    Bot = new Telegraf(token, {
+        telegram: {
+          agent: new HttpsProxyAgent(proxy)
+        }
+    })
+    
+    TelegramClient = new Telegraf(token, {
+        telegram: {
+          agent: new HttpsProxyAgent(proxy)
+        }
+    })
+}
+else {
+    "未选择开启代理使用，在防火墙地区可能会没有响应哦。"
+    Bot = new Telegraf(token)
+    TelegramClient = new Telegram(token)
+}
+
+  // Bot Control
+
+  let botctl = {
     start: () => {
         core.control();
         Bot.catch((err) => {
