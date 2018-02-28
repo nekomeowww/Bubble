@@ -6,6 +6,10 @@ var config = {
         url: "Webhook url",
         path: "/",
         port: 8500
+    },
+    proxy: {
+        enable: true,
+        url: "http://127.0.0.1:1087"
     }
 }
 
