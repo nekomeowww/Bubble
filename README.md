@@ -20,16 +20,21 @@ cp config.js.example config.js
 Edit config.js
 ```
 var config = {
-    token : "Input your Telegram Bot API Key here",
-    nickname : "Give your bot a nickname",
-    username : "Input your Bot's username (without @)",
-    ownerId: This is your chat id, id you dont known where to see it, find out in console log,
+    token : "API Key",
+    nickname : "Nickname",
+    username : "Bot username",
     webhook : {
-        url: "You dont need to worry about this",
+        url: "Webhook url",
         path: "/",
-        port: 8080
+        port: 8500
+    },
+    proxy: {
+        enable: true,
+        url: "http://127.0.0.1:1087"
     }
 }
+
+module.exports = config;
 ```
 ### Run the bot
 
