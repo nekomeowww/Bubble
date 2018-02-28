@@ -1,6 +1,6 @@
 {
   "name": "bubble",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Telegram bot that you can use as a account",
   "main": "app.js",
   "author": "Ayaka Neko",
