@@ -10,7 +10,7 @@ let send = (ctx, text) => {
     for(let i of array) {
         sendText += i
     }
-    bot.TelegramClient.sendMessage(sendId, sendText)
+    bot.TelegramClient.sendMessage(sendId, sendText);
     bot.Log.trace("消息内容：" + sendText);
     bot.Log.trace("消息已经发送出去了哦！");
 }
