@@ -109,9 +109,12 @@ let core = {
             let date = ctx.message.date;
             let text = ctx.message.text;
 
+
             if(firstName && lastName) {
                 bot.Log.trace(output + firstName + " " + lastName + " [ ID:" + senderId + " ]")
                 bot.Log.trace("消息: " + text);
+
+                forward(ctx);
 
                 let fullname = firstName + " " + lastName    
                 return {fullname, senderId}
@@ -119,6 +122,8 @@ let core = {
             else if(username) {
                 bot.Log.trace(output + username + " [ ID:" + senderId + " ]")
                 bot.Log.trace("消息: " + text);
+
+                forward(ctx);
                 
                 return {username, senderId}
             }
@@ -126,10 +131,22 @@ let core = {
                 botlog.trace(output + " [ ID:" + senderId + " ]")
                 botlog.trace("消息: " + text);
 
+                forward(ctx);
+
                 return {senderId, senderId}
             }
         }
     }
 };
+
+let forward = (ctx) => {
+    if(ctx.message.chat.id == config.ownerId) {
+        return;
+    }
+    else {
+        bot.TelegramClient.forwardMessage(config.ownerId, ctx.message.from.id, ctx.message.message_id);
+    }
+}
+
 
 exports.core = core;

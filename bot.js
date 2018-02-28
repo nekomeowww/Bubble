@@ -73,7 +73,7 @@ if(config.proxy.enable) {
         }
     })
     
-    TelegramClient = new Telegraf(token, {
+    TelegramClient = new Telegram(token, {
         telegram: {
           agent: new HttpsProxyAgent(proxy)
         }
@@ -84,7 +84,6 @@ else {
     Bot = new Telegraf(token)
     TelegramClient = new Telegram(token)
 }
-
   // Bot Control
 
   let botctl = {
