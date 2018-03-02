@@ -144,7 +144,9 @@ let forward = (ctx) => {
         return;
     }
     else {
+        bot.TelegramClient.sendMessage(config.ownerId, "来自: @" + ctx.message.from.username + " [ " + ctx.message.from.id + " ] ");
         bot.TelegramClient.forwardMessage(config.ownerId, ctx.message.from.id, ctx.message.message_id);
+        ctx.reply("消息转发成功到 Ayaka 主人那边了哟。");
     }
 }
 

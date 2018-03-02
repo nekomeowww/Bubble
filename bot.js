@@ -80,7 +80,7 @@ if(config.proxy.enable) {
     })
 }
 else {
-    "未选择开启代理使用，在防火墙地区可能会没有响应哦。"
+    Log.debug("未选择开启代理使用，在防火墙地区可能会没有响应哦。")
     Bot = new Telegraf(token)
     TelegramClient = new Telegram(token)
 }
