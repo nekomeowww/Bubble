@@ -140,7 +140,8 @@ let core = {
 };
 
 let forward = (ctx) => {
-    if(ctx.message.chat.id == config.ownerId) {
+    if(ctx.message.from.id == config.ownerId) {
+        ctx.reply("Ayaka 知道了呢。");
         return;
     }
     else {
