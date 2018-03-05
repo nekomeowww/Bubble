@@ -1,6 +1,6 @@
 {
   "name": "bubble",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A Telegram bot that you can use as a account",
   "main": "app.js",
   "author": "Ayaka Neko",
@@ -10,6 +10,8 @@
     "http-proxy-agent": "^2.0.0",
     "https-proxy-agent": "^2.1.1",
     "jsonfile": "^4.0.0",
+    "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
     "log4js": "^2.4.1",
     "node-fetch": "^1.7.3",
     "telegraf": "^3.17.2"
