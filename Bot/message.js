@@ -11,8 +11,7 @@ let send = (ctx, text) => {
         sendText += i
     }
     bot.TelegramClient.sendMessage(sendId, sendText);
-    bot.Log.trace("消息内容：" + sendText);
-    bot.Log.trace("消息已经发送出去了哦！");
+    bot.Log.trace("发送消息内容：" + sendText + "至 [ " + senderId + "] ");
 }
 
 module.exports = send;
