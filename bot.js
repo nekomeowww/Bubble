@@ -36,7 +36,6 @@ log4js.configure({
     }
 });
 const logger = log4js.getLogger('Bubble');
-logger.info("开始时间：" + CurrentTime + " - " + botUsername + " 版本：" + packageInfo.version);
 
 //logger.info("当前 Webhook 设定：" + config.webhook.url + config.webhook.path + " 在端口 " + config.webhook.port);
 
