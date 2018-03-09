@@ -30,7 +30,9 @@ let command = {
         let result = "";
         let text = new String(ctx.message.text);
         let split = text.indexOf(' ');
-        if (/@AyakaNekoBot/gi.test(text)) {
+        var regex = new RegExp(bot.botUsername);
+        bot.Log.debug()
+        if (regex.test(text)) {
             result = text.slice(split + 1);
             return result;
         }
