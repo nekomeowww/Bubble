@@ -3,6 +3,7 @@
 let bot = require('./bot');
 let config = require('./config');
 let cmdctl = require('./Bot/command');
+let msgctl = require('./Bot/message')
 let packageInfo = require('./package.json');
 let subscribe = require('./User/subscribe');
 
@@ -114,7 +115,7 @@ let core = {
                 bot.Log.trace(output + firstName + " " + lastName + " [ ID:" + senderId + " ]")
                 bot.Log.trace("消息: " + text);
 
-                forward(ctx);
+                msgctl.forward(ctx);
 
                 let fullname = firstName + " " + lastName    
                 return {fullname, senderId}
@@ -123,7 +124,7 @@ let core = {
                 bot.Log.trace(output + username + " [ ID:" + senderId + " ]")
                 bot.Log.trace("消息: " + text);
 
-                forward(ctx);
+                msgctl.forward(ctx);
                 
                 return {username, senderId}
             }
@@ -131,25 +132,12 @@ let core = {
                 botlog.trace(output + " [ ID:" + senderId + " ]")
                 botlog.trace("消息: " + text);
 
-                forward(ctx);
+                msgctl.forward(ctx);
 
                 return {senderId, senderId}
             }
         }
     }
 };
-
-let forward = (ctx) => {
-    if(ctx.message.from.id == config.ownerId) {
-        ctx.reply("Ayaka 知道了呢。");
-        return;
-    }
-    else {
-        bot.TelegramClient.sendMessage(config.ownerId, "来自: @" + ctx.message.from.username + " [ " + ctx.message.from.id + " ] ");
-        bot.TelegramClient.forwardMessage(config.ownerId, ctx.message.from.id, ctx.message.message_id);
-        ctx.reply("消息转发成功到 Ayaka 主人那边了哟。");
-    }
-}
-
 
 exports.core = core;
