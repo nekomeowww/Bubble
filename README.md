@@ -45,6 +45,7 @@ var config = {
 
 module.exports = config;
 ```
+----
 
 #### Start the bot
 
