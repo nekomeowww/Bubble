@@ -1,43 +1,70 @@
 # Bubble Bot
 
-## Description
+### Description
 
 This is a bot that you could use it as a account in Telegram.
 
-## Usage
+#### Download
 
 ```
 git clone https://github.com/nekomeowww/Bubble.git
 ```
 
-### Configuration
+#### Installation
+
+```
+npm install # or yarn install
+```
+
+#### Configuration
 
 Run this command:
-```
+
+```bash
 cp config.js.example config.js
 ```
 
 Edit config.js
-```
+```javascript
 var config = {
+    mode: "polling", // webhook or polling
     token : "API Key",
     nickname : "Nickname",
     username : "Bot username",
+    ownerId: 330829346,
     webhook : {
         url: "Webhook url",
         path: "/",
         port: 8500
     },
     proxy: {
-        enable: true,
+        enable: false,
         url: "http://127.0.0.1:1087"
     }
 }
 
 module.exports = config;
 ```
-### Run the bot
 
-```
+#### Start the bot
+
+
+```bash
 node app.js # Make sure you config your proxy if you are in the internet restricted countries.
 ```
+
+
+### Usage
+
+#### Private Chat
+
+Use ``` /session start [target ID] ``` to start a session to someone.    
+After your chat you can suspend it by running ``` /exit ``` command
+
+#### Group Chat
+
+Use ``` /meow ``` in a group to get the information about a group
+
+#### Use info to get the full information of everywhere
+
+Use ``` /info ``` in everywhere to get information on console
