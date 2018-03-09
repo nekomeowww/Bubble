@@ -1,14 +1,16 @@
 let bot = require('../bot');
 let config = require('../config');
-let send = require('./message')
+let msgctl = require('./message')
 
 let Bot = bot.Bot;
 
 let core = () => {
     bot.Bot.command(command.register('/start'), (ctx) => command.start(ctx));
     bot.Bot.command(command.register('/help'), (ctx) => ctx.reply("喵呜？想要找 Neko 嘛？试试看直接联系 @n3ko10 呢~"));
-    bot.Bot.command(command.register('/send'), (ctx) => send(ctx, ctx));
+    bot.Bot.command(command.register('/send'), (ctx) => msgctl.control.core(ctx));
     bot.Bot.command(command.register('/meow'), (ctx) => command.meow(ctx));
+    bot.Bot.command(command.register('/session'), (ctx) => msgctl.control.core(ctx))
+    bot.Bot.command(command.register('/exit'), (ctx) => msgctl.control.core(ctx));
 }
 
 let command = {
