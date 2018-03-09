@@ -11,7 +11,7 @@ var config = {
         port: 8500
     },
     proxy: {
-        enable: true,
+        enable: false,
         url: "http://127.0.0.1:1087"
     }
 }
