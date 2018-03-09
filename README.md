@@ -6,8 +6,19 @@ This is a bot that you could use it as a account in Telegram.
 
 #### Download
 
-```
+```bash
 git clone https://github.com/nekomeowww/Bubble.git
+```
+
+or you can download the latest release package:
+
+```bash
+wget https://github.com/nekomeowww/Bubble/archive/1.1.5.tar.gz
+```
+and unzip it.
+
+```bash
+tar xvf 1.1.5.tar.gz
 ```
 
 #### Installation

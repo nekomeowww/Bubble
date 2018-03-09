@@ -22,7 +22,7 @@ let session = {
         if(data.startsWith("/session start") && ctx.message.from.id == config.ownerId) {
             this.start(ctx, (sendId) => {
                 sessionId = sendId;
-                bot.TelegramClient.sendMessage(config.ownerId, "开始了与 [ id: " + sendId + " ] 的会话。");
+                bot.TelegramClient.sendMessage(config.ownerId, "开始了与 [ ID: " + sendId + " ] 的会话。");
             })
         }
         else if(data.startsWith("/exit") && ctx.message.from.id == config.ownerId) {
