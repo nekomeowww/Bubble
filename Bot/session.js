@@ -23,6 +23,7 @@ let session = {
             this.start(ctx, (sendId) => {
                 sessionId = sendId;
                 bot.TelegramClient.sendMessage(config.ownerId, "开始了与 [ ID: " + sendId + " ] 的会话。");
+                bot.TelegramClient.sendMessage(sessionId, "对方开始了与您的会话。");
             })
         }
         else if(data.startsWith("/exit") && ctx.message.from.id == config.ownerId) {
@@ -71,6 +72,7 @@ let session = {
     },
 
     exit(ctx) {
+        bot.TelegramClient.sendMessage(sessionId, "对方已退出和您的会话。");
         sessionId = undefined;
         bot.TelegramClient.sendMessage(config.ownerId, "已退出该会话。");
     },
