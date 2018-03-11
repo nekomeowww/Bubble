@@ -31,7 +31,6 @@ let command = {
         let text = new String(ctx.message.text);
         let split = text.indexOf(' ');
         var regex = new RegExp(bot.botUsername);
-        bot.Log.debug()
         if (regex.test(text)) {
             result = text.slice(split + 1);
             return result;
